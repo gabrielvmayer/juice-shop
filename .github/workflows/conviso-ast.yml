@@ -1,4 +1,4 @@
-name: CI
+name: "Conviso AST"
 on:
  push:
    branches: [ master ]
