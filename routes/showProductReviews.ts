@@ -27,11 +27,9 @@ global.sleep = (time: number) => {
 
 export function showProductReviews () {
   return (req: Request, res: Response, next: NextFunction) => {
-    const id = Number(req.params.id)
-    if (!Number.isFinite(id)) {
-      res.status(400).json({ error: 'Wrong Params' })
-      return
-    }
+    const id = !utils.isChallengeEnabled(challenges.noSqlCommandChallenge) 
+        ? req.params.id 
+        : Number(req.params.id)
 
     // Measure how long the query takes, to check if there was a nosql dos attack
     const t0 = new Date().getTime()
